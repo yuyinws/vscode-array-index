@@ -1,0 +1,82 @@
+{
+  "publisher": "yuyinws",
+  "name": "vscode-array-index",
+  "displayName": "Array Index",
+  "version": "0.0.1",
+  "private": true,
+  "packageManager": "pnpm@8.6.0",
+  "description": "",
+  "author": "yuyinws",
+  "license": "MIT",
+  "homepage": "https://github.com/yuyinws/vscode-array-index#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yuyinws/vscode-array-index"
+  },
+  "bugs": {
+    "url": "https://github.com/yuyinws/vscode-array-index/issues"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./dist/index.js",
+  "icon": "res/icon.png",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "vscode": "^1.81.0"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "vscode-array-index.toggleArrayIndex",
+        "title": "Toggle Array Index"
+      }
+    ],
+    "configuration": [
+      {
+        "title": "Array Index",
+        "properties": {
+          "vscode-array-index.isShowInLoad": {
+            "type": "boolean",
+            "description": "whether show array index in load"
+          }
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --external vscode",
+    "dev": "nr build --watch",
+    "lint": "eslint .",
+    "vscode:prepublish": "nr build",
+    "publish": "vsce publish --no-dependencies",
+    "pack": "vsce package --no-dependencies",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "release": "bumpp && nr publish"
+  },
+  "dependencies": {
+    "@vue/compiler-sfc": "^3.3.4",
+    "typescript": "^5.1.6"
+  },
+  "devDependencies": {
+    "@types/node": "^18.17.3",
+    "@types/vscode": "^1.81.0",
+    "@vscode/vsce": "^2.20.1",
+    "@yuyinws/eslint-config": "^0.40.0",
+    "@yuyinws/ni": "^0.21.5",
+    "bumpp": "^9.1.1",
+    "eslint": "^8.46.0",
+    "esno": "^0.17.0",
+    "pnpm": "^8.6.12",
+    "rimraf": "^5.0.1",
+    "tsup": "^7.2.0",
+    "vite": "^4.4.8",
+    "vitest": "^0.34.1"
+  }
+}

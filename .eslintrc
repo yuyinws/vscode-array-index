@@ -1,0 +1,11 @@
+{
+  "extends": "@antfu",
+  "overrides": [
+    {
+      "files": "**/*.ts",
+      "rules": {
+        "no-console": "off"
+      }
+    }
+  ]
+}
