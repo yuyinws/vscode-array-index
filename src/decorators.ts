@@ -71,6 +71,17 @@ export function decorators() {
 
           tsTraverse(sourceFile, offset)
         }
+        else if (descriptor.script) {
+          const offset = descriptor.script.loc.start.offset
+          const sourceFile = createSourceFile(
+            editor.document.fileName,
+            descriptor.script.content,
+            ScriptTarget.Latest,
+            true,
+          )
+
+          tsTraverse(sourceFile, offset)
+        }
       }
       else {
         vscode.window.showInformationMessage(`file type ${ext} is not supported yet.`)
