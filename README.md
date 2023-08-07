@@ -1,15 +1,33 @@
-# ext-name
+# VSCode Array Index
 
-<a href="https://marketplace.visualstudio.com/items?itemName=antfu.ext-name" target="__blank"><img src="https://img.shields.io/visual-studio-marketplace/v/antfu.ext-name.svg?color=eee&amp;label=VS%20Code%20Marketplace&logo=visual-studio-code" alt="Visual Studio Marketplace Version" /></a>
+> Show array index in editor.
 
-## Sponsors
+<a href="https://marketplace.visualstudio.com/items?itemName=yuyinws.vscode-array-index" target="__blank"><img src="https://img.shields.io/visual-studio-marketplace/v/yuyinws.vscode-array-index.svg?color=eee&amp;label=VS%20Code%20Marketplace&logo=visual-studio-code" alt="Visual Studio Marketplace Version" /></a>
 
-<p align="center">
-  <a href="https://cdn.jsdelivr.net/gh/antfu/static/sponsors.svg">
-    <img src='https://cdn.jsdelivr.net/gh/antfu/static/sponsors.png'/>
-  </a>
-</p>
+![](./res/show.gif)
 
-## License
+## Status Bar
 
-[MIT](./LICENSE) License © 2022 [Anthony Fu](https://github.com/antfu)
+![](./res/statusbar.gif)
+
+## Command
+
+1. <kbd>Cmd/Ctrl</kbd> + <kbd>shift</kbd> + <kbd>P</kbd>
+2. Toggle Array Index
+
+## Configuration
+
+```json
+{
+  "vscode-array-index.isShowInLoad": false
+}
+```
+
+> whether show array index when editor load.
+
+
+## Support Language
+
+Now support `.js(x)` `.ts(x)` and `.vue`. 
+
+PR and issue welcome for more language support.
