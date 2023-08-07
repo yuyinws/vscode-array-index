@@ -2,7 +2,7 @@
   "publisher": "yuyinws",
   "name": "vscode-array-index",
   "displayName": "Array Index",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "private": true,
   "packageManager": "pnpm@8.6.0",
   "description": "",
