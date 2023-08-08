@@ -13,5 +13,6 @@ export default defineConfig({
   noExternal: [
     'typescript',
     '@vue/compiler-sfc',
+    'svelte',
   ],
 })
