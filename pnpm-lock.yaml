@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@humanwhocodes/momoa':
+    specifier: ^3.0.0
+    version: 3.0.0
   '@vue/compiler-sfc':
     specifier: ^3.3.4
     version: 3.3.4
@@ -693,6 +696,11 @@ packages:
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
     engines: {node: '>=12.22'}
     dev: true
+
+  /@humanwhocodes/momoa@3.0.0:
+    resolution: {integrity: sha512-w9ZDr0lxELbpdzQPmNpYxKHCq4IrG9ZaGFMmzvlbk4zA7+t/zSONCqrp8Tzg17vo2ZJlkL1jS87codK0W5uovQ==}
+    engines: {node: '>=18'}
+    dev: false
 
   /@humanwhocodes/object-schema@1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}

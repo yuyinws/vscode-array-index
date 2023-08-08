@@ -3,6 +3,7 @@ import * as vscode from 'vscode'
 import { ScriptTarget, createSourceFile, forEachChild, isArrayLiteralExpression } from 'typescript'
 import { parse } from '@vue/compiler-sfc'
 import { parse as parseSvelte, walk } from 'svelte/compiler'
+import { parse as parseJSON, traverse } from '@humanwhocodes/momoa'
 
 export function decorators() {
   function createDecorator(text: string): vscode.TextEditorDecorationType {
@@ -93,6 +94,22 @@ export function decorators() {
                 node.elements.forEach((element, index) => {
                 // @ts-expect-error anyway
                   const start = document.positionAt(element?.start)
+                  const decorator = createDecorator(`i:${index}`)
+                  decorators.push(decorator)
+                  editor.setDecorations(decorator, [new vscode.Range(start, start)])
+                })
+              }
+            },
+          })
+        }
+        else if (ext === '.json') {
+          const ast = parseJSON(source)
+
+          traverse(ast, {
+            enter(node: any) {
+              if (node.type === 'Array') {
+                node.elements.forEach((element: any, index: number) => {
+                  const start = document.positionAt(element.loc.start.offset)
                   const decorator = createDecorator(`i:${index}`)
                   decorators.push(decorator)
                   editor.setDecorations(decorator, [new vscode.Range(start, start)])
