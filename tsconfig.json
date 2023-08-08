@@ -11,5 +11,5 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true
   },
-  "exclude": ["node_modules", "dist","*.js"]
+  "exclude": ["node_modules", "dist", "*.js"]
 }
