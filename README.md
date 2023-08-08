@@ -28,6 +28,6 @@
 
 ## Support Language
 
-Now support `.js(x)` `.ts(x)` `.vue` and `.svelte`. 
+Now support `.js(x)` `.ts(x)` `.vue` `.svelte` and `.json`. 
 
 PR and issue welcome for more language support.
