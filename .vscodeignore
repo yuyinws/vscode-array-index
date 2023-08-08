@@ -3,3 +3,11 @@ node_modules
 test
 .github
 .vscode
+static
+*.vsix
+tsconfig.json
+pnpm-lock.yaml
+.gitignore
+.eslintrc
+.npmrc
+tsup.config.ts

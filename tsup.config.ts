@@ -15,4 +15,5 @@ export default defineConfig({
     '@vue/compiler-sfc',
     'svelte',
   ],
+  treeshake: true,
 })
