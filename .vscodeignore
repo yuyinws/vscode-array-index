@@ -10,4 +10,4 @@ pnpm-lock.yaml
 .gitignore
 .eslintrc
 .npmrc
-tsup.config.ts
+rollup.config.js
