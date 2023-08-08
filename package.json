@@ -3,7 +3,7 @@
   "name": "vscode-array-index",
   "displayName": "Array Index",
   "type": "module",
-  "version": "0.0.8",
+  "version": "0.1.0",
   "private": true,
   "packageManager": "pnpm@8.6.0",
   "description": "",
