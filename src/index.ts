@@ -1,9 +1,10 @@
 import * as vscode from 'vscode'
 import { decorators } from './decorators'
-import { displayStatusBar } from './statusBar'
 import { debounce } from './utils'
+import { statusBar } from './statusBar'
 
 const { setDecorators, disposeDecorators } = decorators()
+const { showOrHideBar } = statusBar()
 
 const isShowInLoad = vscode.workspace.getConfiguration('vscode-array-index').get('isShowInLoad', false)
 
@@ -11,8 +12,7 @@ let isArrayIndexShow = isShowInLoad
 
 export function activate(context: vscode.ExtensionContext) {
   isArrayIndexShow && setDecorators()
-  displayStatusBar()
-
+  showOrHideBar()
   context.subscriptions.push(
     vscode.commands.registerCommand('vscode-array-index.toggleArrayIndex', () => {
       if (isArrayIndexShow) {
@@ -38,6 +38,7 @@ vscode.workspace.onDidChangeTextDocument(
 )
 
 vscode.window.onDidChangeActiveTextEditor(() => {
+  showOrHideBar()
   if (isArrayIndexShow) {
     disposeDecorators()
     setDecorators()

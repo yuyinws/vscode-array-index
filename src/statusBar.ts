@@ -1,11 +1,20 @@
+import { extname } from 'node:path'
 import * as vscode from 'vscode'
 
-export function displayStatusBar() {
-  // 注意保存此对象以更新文案，控制显示与否等
+export function statusBar() {
   const statusBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right)
   statusBar.text = 'Toogle [Index]'
-  statusBar.tooltip = 'Toggle Array Index'
-  // 点击相应事件，绑定对应command的标识
   statusBar.command = 'vscode-array-index.toggleArrayIndex'
-  statusBar.show()
+  function showOrHideBar() {
+    const activeEditor = vscode.window.activeTextEditor
+    if (activeEditor && ['.js', '.ts', '.jsx', '.tsx', '.vue', '.svelte', '.json'].includes(extname(activeEditor.document.fileName)))
+      statusBar.show()
+
+    else
+      statusBar.hide()
+  }
+
+  return {
+    showOrHideBar,
+  }
 }
