@@ -3,7 +3,7 @@ import * as vscode from 'vscode'
 
 export function statusBar() {
   const statusBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right)
-  statusBar.text = 'Toogle [Index]'
+  statusBar.text = 'Toggle [Index]'
   statusBar.command = 'vscode-array-index.toggleArrayIndex'
   function showOrHideBar() {
     const activeEditor = vscode.window.activeTextEditor
