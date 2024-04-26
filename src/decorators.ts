@@ -1,7 +1,7 @@
 import * as child_process from 'node:child_process'
 import { extname } from 'pathe'
 import * as vscode from 'vscode'
-import { Node, ScriptTarget, createSourceFile, forEachChild, isArrayLiteralExpression } from 'typescript'
+import { ScriptTarget, createSourceFile, forEachChild, isArrayLiteralExpression } from 'typescript'
 import { parse } from '@vue/compiler-sfc'
 import { parse as parseSvelte, walk } from 'svelte/compiler'
 import { parse as parseJSON, traverse } from '@humanwhocodes/momoa'
