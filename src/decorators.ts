@@ -1,10 +1,11 @@
-import path, { extname } from 'node:path'
+import * as child_process from 'node:child_process'
+import { extname } from 'pathe'
 import * as vscode from 'vscode'
-import { ScriptTarget, createSourceFile, forEachChild, isArrayLiteralExpression, Node } from 'typescript'
+import { Node, ScriptTarget, createSourceFile, forEachChild, isArrayLiteralExpression } from 'typescript'
 import { parse } from '@vue/compiler-sfc'
 import { parse as parseSvelte, walk } from 'svelte/compiler'
 import { parse as parseJSON, traverse } from '@humanwhocodes/momoa'
-import * as child_process from 'child_process'
+import { GO_PARSER_PATH } from './utils'
 
 export function decorators() {
   function createDecorator(text: string): vscode.TextEditorDecorationType {
@@ -47,33 +48,33 @@ export function decorators() {
 
         function markArrayLiteralsInGolang(document: vscode.TextDocument) {
           const filePath = document.fileName.substring(0, document.fileName.length - 3)
-          
-          const goToolsGopath = vscode.workspace.getConfiguration('go')['toolsGopath']??""
-          // FIXME: path to real main.go
-          const parserScriptPath = path.join(__dirname, "..","src", 'go', 'parser', 'main.go')
 
-          let goBinPath = "go" // Maybe check ext fot windows?
-          if(goToolsGopath !== "") {
-            goBinPath = `${goToolsGopath}/`+goBinPath
-          }
-    
-          const child = child_process.spawn(goBinPath, ["run", parserScriptPath, filePath]);
-      
+          const channel = vscode.window.createOutputChannel('vscode-array-index')
+
+          const goToolsGopath = vscode.workspace.getConfiguration('go').toolsGopath ?? ''
+
+          let goBinPath = 'go' // Maybe check ext fot windows?
+          if (goToolsGopath !== '')
+            goBinPath = `${goToolsGopath}/${goBinPath}`
+
+          const child = child_process.spawn(goBinPath, ['run', GO_PARSER_PATH, filePath])
+
           child.stdout.on('data', (data) => {
-              try {
-                  const result = JSON.parse(data.toString());
-                  for(const arr of result) {
-                    for(const el of arr){
-                      const pos = new vscode.Position(el.line-1, el.column-1)
-                      createIndexDecorator(pos, el.index)
-                    }
-                  }
-              } catch (err) {
-                  console.error(`Error: ${err}`);
+            try {
+              const result = JSON.parse(data.toString())
+              for (const arr of result) {
+                for (const el of arr) {
+                  const pos = new vscode.Position(el.line - 1, el.column - 1)
+                  createIndexDecorator(pos, el.index)
+                }
               }
-          });
-          child.stderr.on('data', (data)=>console.error("go stderr:", data.toString()))
-          child.on('error', console.error)
+            }
+            catch (err) {
+              channel.append(`Error: ${err}`)
+            }
+          })
+          child.stderr.on('data', data => channel.append(`go stderr:${data.toString()}`))
+          child.on('error', data => channel.append(`go error:${data.toString()}`))
         }
 
         function tsTraverse(node: any, offset: number = 0) {
@@ -96,7 +97,8 @@ export function decorators() {
           )
 
           tsTraverse(sourceFile)
-        } else if (ext === '.go') {
+        }
+        else if (ext === '.go') {
           markArrayLiteralsInGolang(document)
         }
         else if (ext === '.vue') {
@@ -140,7 +142,7 @@ export function decorators() {
         }
         else if (ext === '.json') {
           const ast = parseJSON(source)
-          console.log("json traverser", ast)
+          console.log('json traverser', ast)
 
           traverse(ast, {
             enter(node: any) {
