@@ -18,5 +18,3 @@ const DIR_DIST = typeof __dirname !== 'undefined'
   : dirname(fileURLToPath(import.meta.url))
 
 export const GO_PARSER_PATH = resolve(DIR_DIST, './parser.go')
-
-console.log(GO_PARSER_PATH)
