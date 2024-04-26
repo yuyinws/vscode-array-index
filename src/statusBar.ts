@@ -7,7 +7,7 @@ export function statusBar() {
   statusBar.command = 'vscode-array-index.toggleArrayIndex'
   function showOrHideBar() {
     const activeEditor = vscode.window.activeTextEditor
-    if (activeEditor && ['.js', '.ts', '.jsx', '.tsx', '.vue', '.svelte', '.json'].includes(extname(activeEditor.document.fileName)))
+    if (activeEditor && ['.js', '.ts', '.jsx', '.tsx', '.vue', '.svelte', '.json', '.go'].includes(extname(activeEditor.document.fileName)))
       statusBar.show()
 
     else

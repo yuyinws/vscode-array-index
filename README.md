@@ -25,9 +25,8 @@
 
 > whether show array index when editor load.
 
-
 ## Support Language
 
-Now support `.js(x)` `.ts(x)` `.vue` `.svelte` and `.json`. 
+Now support `.js(x)` `.ts(x)` `.vue` `.svelte` and `.json`.
 
 PR and issue welcome for more language support.

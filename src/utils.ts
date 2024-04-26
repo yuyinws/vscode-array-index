@@ -1,3 +1,6 @@
+import { fileURLToPath } from 'node:url'
+import { dirname, resolve } from 'pathe'
+
 export function debounce(fn: (...args: any[]) => void, delay: number) {
   let timer: NodeJS.Timeout
 
@@ -9,3 +12,11 @@ export function debounce(fn: (...args: any[]) => void, delay: number) {
     }, delay)
   }
 }
+
+const DIR_DIST = typeof __dirname !== 'undefined'
+  ? __dirname
+  : dirname(fileURLToPath(import.meta.url))
+
+export const GO_PARSER_PATH = resolve(DIR_DIST, './parser.go')
+
+console.log(GO_PARSER_PATH)
