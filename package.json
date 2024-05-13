@@ -3,7 +3,7 @@
   "name": "vscode-array-index",
   "displayName": "Array Index",
   "type": "module",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "private": true,
   "description": "Check array index in your editor.",
   "author": "yuyinws",
