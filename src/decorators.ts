@@ -7,6 +7,8 @@ import { parse as parseSvelte, walk } from 'svelte/compiler'
 import { parse as parseJSON, traverse } from '@humanwhocodes/momoa'
 import { GO_PARSER_PATH } from './utils'
 
+const channel = vscode.window.createOutputChannel('vscode-array-index')
+
 export function decorators() {
   function createDecorator(text: string): vscode.TextEditorDecorationType {
     return vscode.window.createTextEditorDecorationType({
@@ -48,8 +50,6 @@ export function decorators() {
 
         function markArrayLiteralsInGolang(document: vscode.TextDocument) {
           const filePath = document.fileName.substring(0, document.fileName.length - 3)
-
-          const channel = vscode.window.createOutputChannel('vscode-array-index')
 
           const goToolsGopath = vscode.workspace.getConfiguration('go').toolsGopath ?? ''
 
@@ -156,8 +156,7 @@ export function decorators() {
           })
         }
         else {
-          vscode.window.showInformationMessage(`file type ${ext} is not supported yet.`)
-          console.log(`file type ${ext} is not supported yet.`)
+          channel.append(`file type ${ext} is not supported yet.`)
         }
       }
       catch (error) {
